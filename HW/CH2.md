@@ -2,17 +2,22 @@
 ------------
 ## P2.7
 그림 P2.7과 같이 1차 저역통과 필터로 구현한 적분 증폭기 회로의 전달함수를 구하라.
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/b524d9ab-d903-4eef-ba1f-98aa91b76561"  width="700" height="370">
 
 ## P2.12
 그림 P2.12에 주어진 블록선도로 표현된 개루프 제어 시스템에 대해, t $\to \infty$ 일때 단위계단 입력 r(t)에 대한 응답 y(t) $\to$ 1이 되도록 K값을 정하라. 초기조건은 영이라고 가정한다.
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/aa22e8f6-8d7e-484a-a52d-8c57fddcc2c2"  width="700" height="370">
 
 ## P2.15 
 스프링-질량 시스템이 그림 P2.15에 주어졌다. 질량 m의 운동을 기술하는 미분방정식을 구하라. 초기조건이 0인 임펄스 입력에 대한 시스템의 응답 x(t)를 구하라.
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/b9849aac-3658-4446-b4f7-2ddb7379acd4"  width="700" height="370">
 
 ## P2.26
 로봇은 그리퍼로 무거운 부하를 들 수 있으며 팔각 부위의 유연성이 높다[6,20]. 이 로봇의 두 질량모델이 그림 P2.26에 주어져 있다. 전달함수 $Y(s)/F(s)$를 구하라.
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/9d8328ef-8b09-4fff-80c2-b3e23248a5b2"  width="700" height="370">
 
 ## P.37
 입력 힘 u(t)를 가지는 두 개의 질량 시스템을 그림 P2.37에 나타났다. $m_1 = m_2 = 1$ 이고 $K_1 = K_2 = 2$일 때, 
 (a) 이 시스템을 표현하는 미분방정식을 구하라. 
 (b) U(S)에서 Y(S)까지의 전달함수를 계산하라.
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/b17ae3fe-f618-4e99-bebc-7a9419acf6fa"  width="700" height="370">

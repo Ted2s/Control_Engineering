@@ -71,6 +71,17 @@ $$X(S) = \frac{mS+b}{mS^2+bS+k}x_0$$
 
 처럼 정리된다. 이를 역라플라스 변환을 해주면
 
+```
+syms S m b k z
+XS = (m*S + b)*z / (m*S^2 + b*S + k);
+xt = ilaplace(XS);
+disp(xt);
+dirac(t)/S - (k*exp(-(t*(k + S*b))/S^2))/S^3
+```
+
+이므로, 식으로 정리하면
+
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/5342e24f-b1e7-4a33-bc35-bd313383e581"  width="200" height="100">
 
 
 
@@ -80,6 +91,14 @@ $$X(S) = \frac{mS+b}{mS^2+bS+k}x_0$$
 <img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/9d8328ef-8b09-4fff-80c2-b3e23248a5b2"  width="600" height="400">
 
 ### 문제풀이
+
+
+$$M\frac{\mathrm{d^2x(t)}}{\mathrm{d} x^2} +b( \frac{\mathrm{dx(t)} }{\mathrm{d} x} -\frac{\mathrm{dy(t)} }{\mathrm{d} x}) + K(x(t)-y(t)) = F(t)$$
+
+$$M\frac{\mathrm{d^2y(t)}}{\mathrm{d} x^2} +b( \frac{\mathrm{dy(t)} }{\mathrm{d} x} -\frac{\mathrm{dx(t)} }{\mathrm{d} x}) + K(y(t)-x(t)) = 0$$
+
+
+
 
 
 ## P.37

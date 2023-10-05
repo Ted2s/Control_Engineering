@@ -154,16 +154,16 @@ B = [F; 0];
 
 Y = inv(A) * B;
 
-% Y(S)/F(S) 계산
+% 전달함수 계산
 transfer_function = Y(2)/F;
 
 % 결과 출력
-disp('A의 역행렬:');
+disp('역행렬:');
 disp(A_inv);
 
 disp('Y(S)/F(S) = ');
 disp(transfer_function);
-A의 역행렬:
+역행렬:
 [(m*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4),         (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
 [        (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4), (M*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
  
@@ -172,7 +172,7 @@ Y(S)/F(S) =
 ```
 
 
-위 연산의 결과로 전달함수는 다음과 같다.
+위 연산의 결과로 전달함수 $\frac{Y(S)}{F(S)}$는 다음과 같다.
 
 
 $$G(S) = \frac{Y(S)}{F(S)} = \frac{k+bS}{MmS^4+bmS^3+MbS^3+kmS^2+kMS^2}$$
@@ -203,7 +203,7 @@ $$\frac{\mathrm{d^2}y(t)}{\mathrm{d} t} = u(t) + x(t) -y(t)$$
 
 (b)
 
-위 (a)에서 구한 미분방정식을 가져와 라플라스 변환을 적용하고
+여기서는 (a)에서 구한 미분방정식을 통해 라플라스 변환을 적용한다.
 
 $$S^2X(S) = -2X(S) + Y(S) \to (S^2+2)X(S) - Y(S) = 0$$
 
@@ -227,9 +227,7 @@ U(S)
 \end{bmatrix}
 $$
 
-가 된다.
-
-역행렬을 통해 $Y(S)$에 대해 전개하면 $U(S)$에서 $Y(S)$의 전달함수를 구할 수 있다.
+이다. 이를 역행렬을 통해 Y(S)에 대해 전개하면 U(S)에서 Y(S)의 전달함수가 나오게 된다.
 
 $$
 \begin{bmatrix}

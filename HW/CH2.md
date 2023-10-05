@@ -38,7 +38,7 @@ $$R(s)=\frac{1}{s} \to \frac{Y(s)}{R(s)}=\frac{k}{s+50} \to Y(s)=\frac{k}{s(s+50
 
 이를 라플라스 변환을 통해 
 
-$$y(t)=\frac{k}{50}(1-\e^{-50t})$$
+$$y(t) = \frac{K}{50}(1-e^{-50t})$$
 
 $$t \to \infty, y(\infty)=\frac{k}{50}=1 \to k=50이다.$$
 
@@ -92,13 +92,90 @@ dirac(t)/S - (k*exp(-(t*(k + S*b))/S^2))/S^3
 
 ### 문제풀이
 
+스프링-질량-감쇄기 문제는 뉴턴의 운동법칙을 이용해서 문제를 해결해야한다. 
 
 $$M\frac{\mathrm{d^2x(t)}}{\mathrm{d} x^2} +b( \frac{\mathrm{dx(t)} }{\mathrm{d} x} -\frac{\mathrm{dy(t)} }{\mathrm{d} x}) + K(x(t)-y(t)) = F(t)$$
 
 $$M\frac{\mathrm{d^2y(t)}}{\mathrm{d} x^2} +b( \frac{\mathrm{dy(t)} }{\mathrm{d} x} -\frac{\mathrm{dx(t)} }{\mathrm{d} x}) + K(y(t)-x(t)) = 0$$
 
+무게를 M,m , 이동거리를 t에 대한 x,y 함수로 설정하고, 위 두 식을 라플라스 변환을 해주면, 
+
+$$MS^2X(S) +bSX(S) + KX(S) - bSY(S) - KY(S) = F(S)$$
+
+$$mS^2Y(S) +bSY(S) + KY(S) - bSX(S) - KX(S) = 0$$
+
+와 같이 된다. 이를 행렬 식으로 풀어내게 되면, 
+
+$$\begin{bmatrix}
+MS^2+bS+k & -(bS + k)\\ 
+ -(bS+K)& mS^2+bS+K 
+\end{bmatrix}
+\begin{bmatrix}
+X(S) \\
+Y(S)
+\end{bmatrix}
+&equals;
+\begin{bmatrix}
+F(S) \\
+0
+\end{bmatrix}
+$$
 
 
+이를 역행렬로 $Y(S)$를 구하면
+
+$$
+\begin{bmatrix}
+X(S) \\
+Y(S)
+\end{bmatrix}
+&equals;
+A^{-1}
+\begin{bmatrix}
+F(S) \\
+0
+\end{bmatrix}
+$$
+
+Matlab으로 연산하면 다음과 같다.
+
+```
+syms S M m b k F
+
+% 행렬 A 정의
+A = [M*S^2 + b*S + k, -(b*S + k);
+     -(b*S + k), m*S^2 + b*S + k];
+
+% 행렬 A의 역행렬 구하기
+A_inv = inv(A);
+
+% 입력 벡터 정의
+B = [F; 0];
+
+Y = inv(A) * B;
+
+% Y(S)/F(S) 계산
+transfer_function = Y(2)/F;
+
+% 결과 출력
+disp('A의 역행렬:');
+disp(A_inv);
+
+disp('Y(S)/F(S) = ');
+disp(transfer_function);
+A의 역행렬:
+[(m*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4),         (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
+[        (k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4), (M*S^2 + b*S + k)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)]
+ 
+Y(S)/F(S) = 
+(k + b*S)/(b*m*S^3 + k*m*S^2 + M*b*S^3 + M*k*S^2 + M*m*S^4)
+```
+
+
+위 연산의 결과로 전달함수는 다음과 같다.
+
+
+$$G(S) = \frac{Y(S)}{F(S)} = \frac{k+bS}{MmS^4+bmS^3+MbS^3+kmS^2+kMS^2}$$
 
 
 ## P.37
@@ -109,6 +186,73 @@ $$M\frac{\mathrm{d^2y(t)}}{\mathrm{d} x^2} +b( \frac{\mathrm{dy(t)} }{\mathrm{d}
 <img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/b17ae3fe-f618-4e99-bebc-7a9419acf6fa"  width="600" height="500">
 
 ### 문제풀이
+
+(a) 
+
+
+$$m_{1}\frac{\mathrm{d^2}x(t)}{\mathrm{d} t} + k_1x(t) + k_2(x(t)-y(t)) = 0$$
+
+$$m_{2}\frac{\mathrm{d^2}y(t)}{\mathrm{d} t} + k_2(y(t)-x(t)) = u(t)$$
+
+위 식에 $m_1 = m_2 = K_1 = K_2 = 1$을 대입하여 미분방정식으로 정리한다.
+
+$$\frac{\mathrm{d^2}x(t)}{\mathrm{d} x} = -2x(t) + y(t)$$
+
+$$\frac{\mathrm{d^2}y(t)}{\mathrm{d} t} = u(t) + x(t) -y(t)$$
+
+
+(b)
+
+위 (a)에서 구한 미분방정식을 가져와 라플라스 변환을 적용하고
+
+$$S^2X(S) = -2X(S) + Y(S) \to (S^2+2)X(S) - Y(S) = 0$$
+
+$$S^2Y(S) = U(S) + X(S) - Y(S) \to -X(S) + (S^2 + 1)Y(S) = U(S)$$
+
+행렬방정식으로 접근하면
+
+$$
+\begin{bmatrix}
+S^2+2 & -1\\ 
+ -1& S^2+1
+\end{bmatrix}
+\begin{bmatrix}
+X(S) \\
+Y(S)
+\end{bmatrix}
+&equals;
+\begin{bmatrix}
+0 \\
+U(S)
+\end{bmatrix}
+$$
+
+가 된다.
+
+역행렬을 통해 $Y(S)$에 대해 전개하면 $U(S)$에서 $Y(S)$의 전달함수를 구할 수 있다.
+
+$$
+\begin{bmatrix}
+X(S) \\
+Y(S)
+\end{bmatrix}
+&equals;
+\begin{bmatrix}
+\frac{S^2+1}{S^4+3S^2+1} & \frac{1}{S^4+3S^2+1}\\ 
+\frac{1}{S^4+3S^2+1}& \frac{S^2+2}{S^4+3S^2+1}
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+U(S)
+\end{bmatrix}
+$$
+
+$Y(S) = \frac{S^2+2}{S^4+3S^2+1}U(S)$ 이므로 전달함수는 다음과 같다.
+
+$$G(S) = \frac{Y(S)}{(U(S)} = \frac{S^2+2}{S^4+3S^2+1}$$
+
+
+
 
 
 

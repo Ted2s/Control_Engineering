@@ -77,7 +77,7 @@ $$T(s)=\frac{Y(s)}{R(s)}=\frac{G(s)}{1+G(s)}=\frac{\frac{s+2}{s^3+5s^2-24s}}{1+\
 
 가 된다.
 
-(b) 이를 통해 상태모델과 phas variable form으로 작성하면, 
+(b) 이를 통해 상태모델과 phase variable form으로 작성하면, 
 
 $$A=
 \begin{bmatrix}
@@ -95,13 +95,13 @@ $$B=
 
 $$C=
 \begin{bmatrix}
-1&2&0
+2&1&0
 \end{bmatrix}$$
 
 이므로, 
 
 
-<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/f83b3706-78d7-4002-9bd2-84cf098d675c"  width="500" height="300">
+<img src="https://github.com/Ted2s/Control_Engineering/assets/144117619/cb0a930e-a39b-4883-bb53-6ed1d3079ec8"  width="500" height="300">
 
 가 된다.
 
